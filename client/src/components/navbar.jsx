@@ -1,100 +1,68 @@
 import React from "react";
-import {
-  Navbar,
-  Collapse,
-  Typography,
-  IconButton,
-} from "@material-tailwind/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
- 
-function NavList() {
-  return (
-    <ul className="my-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-24">
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-medium"
-      >
-        <a href="#" className="flex items-center hover:text-blue-500 transition-colors">
-          About
-        </a>
-      </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-medium"
-      >
-        <a href="#" className="flex items-center hover:text-blue-500 transition-colors">
-          Gallery
-        </a>
-      </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-medium"
-      >
-        <a href="#" className="flex items-center hover:text-blue-500 transition-colors">
-          Location
-        </a>
-      </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-medium"
-      >
-        <a href="#" className="flex items-center hover:text-blue-500 transition-colors">
-          Contact
-        </a>
-      </Typography>
-    </ul>
-  );
-}
- 
-export function NavbarSimple() {
-  const [openNav, setOpenNav] = React.useState(false);
- 
-  const handleWindowResize = () =>
-    window.innerWidth >= 960 && setOpenNav(false);
- 
+import { motion, useViewportScroll } from "framer-motion";
+
+const linkList = ["Home", "About", "Services", "Portfolio", "Contact"];
+
+const navStyles = {
+  display: "flex",
+  position: "fixed",
+  alignItems: "center",
+  justifyContent: "space-between",
+  height: "5rem",
+  padding: "0 2rem",
+  width: "calc(100vw)",
+  left: "0"
+};
+
+const navLinksWrapper = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  width: "50%"
+};
+
+export default function Nav() {
+  const { scrollY } = useViewportScroll();
+  const [hidden, setHidden] = React.useState(false);
+
+  function update() {
+    if (scrollY?.current < scrollY?.prev) {
+      setHidden(false);
+    } else if (scrollY?.current > 40 && scrollY?.current > scrollY?.prev) {
+      setHidden(true);
+    }
+  }
+
   React.useEffect(() => {
-    window.addEventListener("resize", handleWindowResize);
- 
-    return () => {
-      window.removeEventListener("resize", handleWindowResize);
-    };
-  }, []);
- 
+    return scrollY.onChange(() => update());
+  });
+
+  const variants = {
+    visible: { opacity: 1, y: 0 },
+    hidden: { opacity: 0, y: -25 }
+  };
+
+  // Function to handle click on navigation links
+  const handleLinkClick = () => {
+    window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+  };
+
   return (
-    <Navbar className="mx-auto w-full px-6 py-3 bg-green-600 text-black font-serif sticky top-0">
-      <div className="flex items-center justify-between text-blue-gray-900 mx-32 h-16">
-        <Typography
-          as="a"
-          href="#"
-          variant="h6"
-          className="mr-4 cursor-pointer py-1.5 font-extrabold text-xl"
-        >
-          Ezhuvelil Gardens
-        </Typography>
-        <div className="hidden lg:block">
-          <NavList />
-        </div>
-        <IconButton
-          variant="text"
-          className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
-          ripple={false}
-          onClick={() => setOpenNav(!openNav)}
-        >
-            <XMarkIcon className="h-6 w-6" strokeWidth={2} />
-          
-        </IconButton>
+    <motion.nav
+      variants={variants}
+      animate={hidden ? "hidden" : "visible"}
+      transition={{ ease: [0.1, 0.25, 0.3, 1], duration: 0.3 }}
+      style={navStyles}
+      className="shadow-md bg-[#3fbbc0]"
+    >
+      <span>Logo</span>
+      <div style={navLinksWrapper}>
+        {linkList.map((item, i) => (
+          <span key={i} onClick={handleLinkClick}>
+            {item}
+          </span>
+        ))}
       </div>
-      {/* <Collapse open={openNav}>
-        <NavList />
-      </Collapse> */}
-    </Navbar>
+    </motion.nav>
   );
 }
