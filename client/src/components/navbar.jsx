@@ -1,7 +1,7 @@
 import React from "react";
 import { motion, useViewportScroll } from "framer-motion";
 
-const linkList = ["Home", "About", "Services", "Portfolio", "Contact"];
+const linkList = ["Resources", "Services", "Contact"];
 
 const navStyles = {
   display: "flex",
@@ -14,12 +14,6 @@ const navStyles = {
   left: "0"
 };
 
-const navLinksWrapper = {
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "space-between",
-  width: "50%"
-};
 
 export default function Nav() {
   const { scrollY } = useViewportScroll();
@@ -48,21 +42,24 @@ export default function Nav() {
   };
 
   return (
-    <motion.nav
-      variants={variants}
-      animate={hidden ? "hidden" : "visible"}
-      transition={{ ease: [0.1, 0.25, 0.3, 1], duration: 0.3 }}
-      style={navStyles}
-      className="shadow-md bg-[#3fbbc0]"
-    >
-      <span>Logo</span>
-      <div style={navLinksWrapper}>
-        {linkList.map((item, i) => (
-          <span key={i} onClick={handleLinkClick}>
-            {item}
-          </span>
-        ))}
-      </div>
-    </motion.nav>
+    <div className="">
+      <motion.nav
+        variants={variants}
+        animate={hidden ? "hidden" : "visible"}
+        transition={{ ease: [0.1, 0.25, 0.3, 1], duration: 0.3 }}
+        style={navStyles}
+        className="shadow-md bg-[#3fbbc0]"
+      >
+        <span>Logo</span>
+        <div className="flex items-center justify-between w-[25%] font-semibold text-lg">
+          {linkList.map((item, i) => (
+            <span key={i} onClick={handleLinkClick}>
+              {item}
+            </span>
+          ))}
+        </div>
+      </motion.nav>
+    </div>
+    
   );
 }
