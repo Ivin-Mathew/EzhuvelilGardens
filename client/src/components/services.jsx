@@ -36,7 +36,7 @@ const Services = () => {
         <p className='text-3xl font-medium'>What we offer</p>
         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mt-5 p-5'>
             {content.map((item,i)=>(
-                <div key={i} className='mx-10 mb-6 pb-3 shadow-sm flex flex-row'>
+                <div key={i} className='mx-10 mb-6 pb-3 shadow-sm flex flex-row hover:scale-125 transform transition duration-500'>
                     <img src={icon} className='h-8 mt-2'/>
                     <div>
                         <p className="text-xl font-semibold p-2">{item.title}</p>
