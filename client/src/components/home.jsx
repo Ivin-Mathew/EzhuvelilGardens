@@ -11,3 +11,41 @@ const Landing = () => {
 )}
 
 export default Landing
+
+/* const images=[
+    {
+        src:'../assets/gallery1/1.jpg',
+        alt:'Image 1',
+        title:'Image 1',
+    },
+    {
+        src:'../assets/gallery1/2.jpg',
+        alt:'Image 2',
+        title:'Image 2',
+    },
+    {
+        src:'../assets/gallery1/3.jpg',
+        alt:'Image 3',
+        title:'Image 3',
+    },
+    {
+        src:'../assets/gallery1/4.jpg',
+        alt:'Image 4',
+        title:'Image 4',
+    },
+    {
+        src:'../assets/gallery1/5.jpg',
+        alt:'Image 5',
+        title:'Image 5',
+    },
+    {
+        src:'../assets/gallery1/6.jpg',
+        alt:'Image 6',
+        title:'Image 6',
+    },
+    {
+        src:'../assets/gallery1/7.jpg',
+        alt:'Image 7',
+        title:'Image 7',
+    },
+]; */
