@@ -13,7 +13,7 @@ const Hero = () => {
           eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </p>
       </div>
-      <div className="border-8 border-light-blue rounded-full w-100 h-140 mt-10 mr-10 bg-black overflow-clip">
+      <div className=" rounded-full w-100 h-140 mt-10 mr-10 bg-black overflow-clip">
         {/* <Image src={hero} alt="Hero image"/> */}
       </div>
     </div>
