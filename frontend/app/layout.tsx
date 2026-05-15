@@ -1,7 +1,5 @@
+import Header from "@/sections/Header";
 import type { Metadata } from "next";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-
 
 export const metadata: Metadata = {
   title: "Ezhuvelil Gardens",
@@ -18,7 +16,6 @@ export default function RootLayout({
       <body className="antialiased">
         <Header />
         <main>{children}</main>
-        <Footer />
       </body>
     </html>
   );
