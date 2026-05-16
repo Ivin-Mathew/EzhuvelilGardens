@@ -1,6 +1,7 @@
 "use client"
 
 import './globals.css';
+
 import Hero from "@/sections/Hero";
 import About from '@/sections/About';
 import Contact from '@/sections/Contact';
