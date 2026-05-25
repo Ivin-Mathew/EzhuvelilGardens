@@ -1,23 +1,24 @@
 "use client"
 
-import './globals.css';
-
 import Hero from "@/sections/Hero";
 import About from '@/sections/About';
 import Contact from '@/sections/Contact';
 import Footer from "@/sections/Footer";
 import gsap from 'gsap';
-import { ScrollSmoother, ScrollTrigger } from 'gsap/all';
+import { ScrollSmoother, ScrollToPlugin, ScrollTrigger } from 'gsap/all';
 import { useGSAP } from '@gsap/react';
+import Gallery from "@/sections/Gallery";
 
 
 export default function Home() {
-  gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+  gsap.registerPlugin(ScrollTrigger, ScrollSmoother, ScrollToPlugin);
 
   useGSAP(()=>{
     ScrollSmoother.create({
       smoothTouch: true,
-      ease: "expo"
+      ease: "expo",
+      speed:0.8,
+      smooth:1.75,
     })
   },[])
   return (
@@ -26,6 +27,7 @@ export default function Home() {
       <Hero />
       <div className='flex flex-col items-center mx-[10%] my-10 gap-20'>
         <About />
+        <Gallery />
         <Contact />
       </div>
     </div>
